@@ -251,7 +251,6 @@ public class NXJUploader extends Activity implements UploadThreadListener, Dialo
                 textView = (TextView) findViewById(R.id.nxt_name);
                 textView.setText(text);
                 break;
-
             case DIALOG_FILE:
                 textView = (TextView) findViewById(R.id.nxj_file_name);
                 textView.setText(text);

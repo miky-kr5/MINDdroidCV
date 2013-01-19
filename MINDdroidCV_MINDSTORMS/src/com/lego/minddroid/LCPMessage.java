@@ -20,6 +20,7 @@
 package com.lego.minddroid;
 
 
+
 /**
  * Class for composing the proper messages for simple
  * communication over bluetooth
@@ -97,6 +98,87 @@ public class LCPMessage {
     public static final byte DIRECTORY_FULL = (byte) 0xFC;
     public static final byte UNDEFINED_ERROR = (byte) 0x8A;
     public static final byte NOT_IMPLEMENTED = (byte) 0xFD;
+    
+    // Sensor types
+    public static final byte NO_SENSOR = 0x00;
+    public static final byte SWITCH = 0x01;
+    public static final byte TEMPERATURE = 0x02;
+    public static final byte REFLECTION = 0x03;
+    public static final byte ANGLE = 0x04;
+    public static final byte LIGHT_ACTIVE = 0x05;
+    public static final byte LIGHT_INACTIVE = 0x06;
+    public static final byte SOUND_DB = 0x07;
+    public static final byte SOUND_DBA = 0x08;
+    public static final byte CUSTOM = 0x09;
+    public static final byte LOWSPEED = 0x0A;
+    public static final byte LOWSPEED_9V = 0x0B;
+    public static final byte NO_OF_SENSOR_TYPES = 0x0C;
+    
+    // Sensor modes
+    public static final byte RAWMODE = 0x00;
+    public static final byte BOOLEANMODE = 0x20;
+    public static final byte TRANSITIONCNTMODE = 0x40;
+    public static final byte PERIODCOUNTERMODE = 0x60;
+    public static final byte PCTFULLSCALEMODE = (byte) 0x80;
+    public static final byte CELSIUSMODE = (byte) 0xA0;
+    public static final byte FRAHRENHEITMODE = (byte) 0xC0;
+    public static final byte ANGLESTEPSMODE = (byte) 0xE0;
+    public static final byte SLOPEMASK = 0x1F;
+    public static final byte MODEMASK = (byte) 0xE0;
+    
+    // Ports
+    public static final byte PORT_0 = 0x00;
+	public static final byte PORT_1 = 0x01;
+	public static final byte PORT_2 = 0x02;
+	public static final byte PORT_3 = 0x03;
+    
+    public static byte[] getSetInputModeMessage(int input_port, byte sensor_type, byte sensor_mode){
+		byte[] message = new byte[5];
+
+		message[0] = DIRECT_COMMAND_NOREPLY;
+		message[1] = SET_INPUT_MODE;
+		switch(input_port){
+		case 0:
+			message[2] = PORT_0;
+			break;
+		case 1:
+			message[2] = PORT_1;
+			break;
+		case 2:
+			message[2] = PORT_2;
+			break;
+		case 3:
+			message[2] = PORT_3;
+			break;
+		}
+		message[3] = sensor_type;
+		message[4] = sensor_mode;
+
+		return message;
+	}
+    
+    public static byte[] getGetInputValuesMessage(int input_port){
+		byte[] message = new byte[3];
+
+		message[0] = DIRECT_COMMAND_REPLY;
+		message[1] = GET_INPUT_VALUES;
+		switch(input_port){
+		case 0:
+			message[2] = PORT_0;
+			break;
+		case 1:
+			message[2] = PORT_1;
+			break;
+		case 2:
+			message[2] = PORT_2;
+			break;
+		case 3:
+			message[2] = PORT_3;
+			break;
+		}
+
+		return message;
+	}
 
     // Firmware codes
     public static byte[] FIRMWARE_VERSION_LEJOSMINDDROID = { 0x6c, 0x4d, 0x49, 0x64 };

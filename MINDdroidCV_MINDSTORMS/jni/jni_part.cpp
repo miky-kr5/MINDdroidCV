@@ -8,7 +8,7 @@ using namespace std;
 using namespace cv;
 
 extern "C" {
-  JNIEXPORT void JNICALL Java_com_lego_minddroid_SampleView_FindLight(JNIEnv* env, jobject thiz, jint width, jint height, jbyteArray yuv, jintArray bgra, jdoubleArray array)
+  JNIEXPORT void JNICALL Java_com_lego_minddroid_CameraGLRenderer_FindLight(JNIEnv* env, jobject thiz, jint width, jint height, jbyteArray yuv, jintArray bgra, jdoubleArray array)
 {
     jbyte* _yuv  = env->GetByteArrayElements(yuv, 0);
     jint*  _bgra = env->GetIntArrayElements(bgra, 0);
