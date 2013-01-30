@@ -144,8 +144,8 @@ public class CameraGLRenderer implements Renderer, PreviewCallback{
 				double upScale = 40; 
 				double direction = (buffer[1] - 240/2)/160;
 				//double direction = -1.0 * (buffer[2] - w/2)/h;
-				left = (int)(upScale * direction) + forwardSpeed;
-				right = (int)(-1.0 * upScale * direction) + forwardSpeed;
+				right = (int)(upScale * direction) + forwardSpeed;
+				left = (int)(-1.0 * upScale * direction) + forwardSpeed;
 			} else {
 				left = 0;
 				right = 0;
